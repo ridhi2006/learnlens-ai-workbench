@@ -28,8 +28,6 @@ export function AnalyzingState({
       const t = setTimeout(onComplete, 500);
       return () => clearTimeout(t);
     }
-    // error triggered after "Transcript extracted" stage
-    if (hasError && stageIndex === 1) return;
     const t = setTimeout(() => setStageIndex((i) => i + 1), STAGE_DURATION);
     return () => clearTimeout(t);
   }, [stageIndex, hasError, onComplete]);
@@ -42,9 +40,7 @@ export function AnalyzingState({
     return () => clearInterval(t);
   }, [hasError]);
 
-  const progressPct = hasError
-    ? ((stageIndex + 0.5) / analyzingStages.length) * 100
-    : (Math.min(stageIndex, analyzingStages.length) / analyzingStages.length) * 100;
+  const progressPct = (Math.min(stageIndex, analyzingStages.length) / analyzingStages.length) * 100;
 
   if (hasError) {
     return (
