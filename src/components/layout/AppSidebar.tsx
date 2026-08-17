@@ -17,19 +17,22 @@ import { useApp } from "@/context/app-context";
 import { videos } from "@/data/mockData";
 import { cn } from "@/lib/utils";
 
-const mainNav = [
+type To = NonNullable<LinkProps["to"]>;
+
+const mainNav: { to: To; label: string; icon: typeof Brain }[] = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/my-learning", label: "My Learning", icon: Brain },
   { to: "/library", label: "Library", icon: BookMarked },
 ];
 
-const footerNav = [
+const footerNav: { to: To; label: string; icon: typeof Brain }[] = [
   { to: "/settings", label: "Settings", icon: Settings },
   { to: "/profile", label: "Profile", icon: User },
 ];
 
 function NavRow({
   to,
+  params,
   label,
   icon: Icon,
   collapsed,
@@ -37,7 +40,8 @@ function NavRow({
   onNavigate,
   muted,
 }: {
-  to: LinkProps["to"];
+  to: To;
+  params?: Record<string, string> | undefined;
   label: string;
   icon?: typeof Brain | undefined;
   collapsed: boolean;
@@ -48,8 +52,9 @@ function NavRow({
   return (
     <Link
       to={to}
-      onClick={onNavigate}
-      title={collapsed ? label : undefined}
+      {...(params ? { params } : {})}
+      {...(onNavigate ? { onClick: onNavigate } : {})}
+      {...(collapsed ? { title: label } : {})}
       className={cn(
         "group relative flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-sm transition-colors duration-200",
         active
