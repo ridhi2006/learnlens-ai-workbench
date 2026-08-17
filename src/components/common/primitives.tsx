@@ -44,8 +44,8 @@ export function CountUp({
   duration = 1100,
 }: {
   to: number;
-  suffix?: string;
-  duration?: number;
+  suffix?: string | undefined;
+  duration?: number | undefined;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
