@@ -1,24 +1,50 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { MarketingLayout } from "@/layouts/MarketingLayout";
+import { Hero } from "@/components/landing/Hero";
+import { HeroVisual } from "@/components/landing/HeroVisual";
+import { ValueStrip } from "@/components/landing/ValueStrip";
+import { ProblemSection } from "@/components/landing/ProblemSection";
+import { FeatureShowcase } from "@/components/landing/FeatureShowcase";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { IntelligenceSection } from "@/components/landing/IntelligenceSection";
+import { ProductPreview } from "@/components/landing/ProductPreview";
+import { FinalCta } from "@/components/landing/FinalCta";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "LearnLens AI — Turn any YouTube video into a learning path" },
+      {
+        name: "description",
+        content:
+          "LearnLens transforms educational YouTube videos into summaries, smart notes, quizzes, knowledge graphs, AI tutoring and a personalized learning path.",
+      },
+      { property: "og:title", content: "LearnLens AI — Turn any YouTube video into a learning path" },
+      {
+        property: "og:description",
+        content:
+          "Stop just watching. Analyze any educational video and get summaries, quizzes, a knowledge graph and an AI tutor built from it.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <MarketingLayout>
+      <Hero />
+      <div className="mx-auto -mt-6 max-w-[1360px] px-5 md:px-8">
+        <HeroVisual />
+      </div>
+      <ValueStrip />
+      <ProblemSection />
+      <FeatureShowcase />
+      <HowItWorks />
+      <IntelligenceSection />
+      <ProductPreview />
+      <FinalCta />
+    </MarketingLayout>
   );
 }
