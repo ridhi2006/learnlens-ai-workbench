@@ -13,7 +13,7 @@ const dotClass: Record<Concept["status"], string> = {
 };
 
 function ConceptNode({ data, selected }: NodeProps) {
-  const concept = data.concept as Concept;
+  const concept = data["concept"] as Concept;
   return (
     <div
       className={cn(
