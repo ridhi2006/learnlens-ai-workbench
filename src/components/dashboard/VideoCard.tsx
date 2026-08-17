@@ -71,7 +71,7 @@ export function VideoCard({
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem
-                variant="destructive"
+                className="text-destructive focus:text-destructive"
                 onClick={() => {
                   toast.success("Removed from your learning");
                   onRemove?.(video.id);

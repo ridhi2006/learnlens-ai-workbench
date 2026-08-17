@@ -46,8 +46,8 @@ export function Hero() {
             {headingWords.map((word, i) => (
               <motion.span
                 key={word + i}
-                initial={reduce ? undefined : { opacity: 0, y: 18, filter: "blur(10px)" }}
-                animate={reduce ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={reduce ? false : { opacity: 0, y: 18, filter: "blur(10px)" }}
+                animate={reduce ? false : { opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.6, delay: 0.12 + i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                 className="mr-[0.28em] inline-block last:mr-0"
               >
