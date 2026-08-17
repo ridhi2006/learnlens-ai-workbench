@@ -31,7 +31,7 @@ export function TimestampDrawer() {
     setThinking(true);
     setInput("");
     window.setTimeout(() => {
-      const data = timestampAnswers[timestampTime] ?? timestampAnswers.default!;
+      const data = timestampAnswers[timestampTime] ?? timestampAnswers["default"]!;
       setThread((prev) => [...prev, { question, answer: data.answer, source: data.source }]);
       setThinking(false);
     }, 900);
