@@ -147,7 +147,8 @@ function SidebarBody({
             {videos.slice(0, 3).map((v) => (
               <NavRow
                 key={v.id}
-                to={`/learn/${v.id}`}
+                to="/learn/$videoId"
+                params={{ videoId: v.id }}
                 label={v.topic === "Frontend Engineering" ? "React Hooks" : v.title.split(" ").slice(0, 3).join(" ")}
                 collapsed={collapsed}
                 active={pathname.startsWith(`/learn/${v.id}`)}
