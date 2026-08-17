@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouterState, type LinkProps } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import {
   BookMarked,
@@ -37,13 +37,13 @@ function NavRow({
   onNavigate,
   muted,
 }: {
-  to: string;
+  to: LinkProps["to"];
   label: string;
-  icon?: typeof Brain;
+  icon?: typeof Brain | undefined;
   collapsed: boolean;
   active: boolean;
-  onNavigate?: () => void;
-  muted?: boolean;
+  onNavigate?: (() => void) | undefined;
+  muted?: boolean | undefined;
 }) {
   return (
     <Link
@@ -81,7 +81,7 @@ function SidebarBody({
   onNavigate,
 }: {
   collapsed: boolean;
-  onNavigate?: () => void;
+  onNavigate?: (() => void) | undefined;
 }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { toggleSidebar } = useApp();
