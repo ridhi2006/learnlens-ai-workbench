@@ -31,9 +31,9 @@ function NodeCluster() {
           <stop offset="100%" stopColor="var(--brand-cyan)" />
         </linearGradient>
       </defs>
-      {edges.map(([a, b], i) => {
-        const na = nodes[a]!;
-        const nb = nodes[b]!;
+      {edges.map((edge, i) => {
+        const na = nodes[edge[0] as number]!;
+        const nb = nodes[edge[1] as number]!;
         return (
           <line
             key={i}
